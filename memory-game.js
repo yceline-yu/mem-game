@@ -43,6 +43,10 @@ function createCards(colors) {
 
   for (let color of colors) {
     // missing code here ...
+    let colCard = document.createElement("div");
+    colCard.className = color;
+    colCard.addEventListener("click",handleCardClick);
+    gameBoard.appendChild(colCard);
   }
 }
 
@@ -50,6 +54,13 @@ function createCards(colors) {
 
 function flipCard(card) {
   // ... you need to write this ...
+  if (firstCard.className === secondCard.className && firstCard !== secondCard){
+    firstCard.removeEventListener("click",handleCardClick);
+    secondCard.removeEventListener("click",handleCardClick)
+  } else {
+    unFlipCard(firstCard);
+    unFlipCard(secondCard);
+  }
 }
 
 /** Flip a card face-down. */
@@ -62,4 +73,5 @@ function unFlipCard(card) {
 
 function handleCardClick(evt) {
   // ... you need to write this ...
+  evt.className.add(fliped) 
 }
