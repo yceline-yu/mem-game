@@ -12,6 +12,7 @@ const colors = shuffle(COLORS);
 
 createCards(colors);
 
+let firstCard, secondCard;
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -45,6 +46,14 @@ function createCards(colors) {
     // missing code here ...
     let colCard = document.createElement("div");
     colCard.className = color;
+    let img = document.createElement("img");
+    let fimg = document.createElement("img");
+    fimg.setAttribute("src", color + ".png");
+    fimg.setAttribute("class", "front");
+    img.setAttribute("src", "back.png");
+    img.setAttribute("class", "back");
+    colCard.appendChild(fimg);
+    colCard.appendChild(img);
     colCard.addEventListener("click",handleCardClick);
     gameBoard.appendChild(colCard);
   }
@@ -67,11 +76,15 @@ function flipCard(card) {
 
 function unFlipCard(card) {
   // ... you need to write this ...
+  firstCard.classList.remove("fliped");
+  secondCard.classList.remove("fliped");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   // ... you need to write this ...
-  evt.className.add(fliped) 
+  this.classList.toggle("fliped");
+  firstCard = this;
+  secondCard = this;
 }
