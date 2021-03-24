@@ -13,6 +13,7 @@ const colors = shuffle(COLORS);
 createCards(colors);
 
 let firstCard, secondCard;
+let hasFlippedCard = false;
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -61,7 +62,7 @@ function createCards(colors) {
 
 /** Flip a card face-up. */
 
-function flipCard(card) {
+function flipCard() {
   // ... you need to write this ...
   if (firstCard.className === secondCard.className && firstCard !== secondCard){
     firstCard.removeEventListener("click",handleCardClick);
@@ -76,15 +77,22 @@ function flipCard(card) {
 
 function unFlipCard(card) {
   // ... you need to write this ...
-  firstCard.classList.remove("fliped");
-  secondCard.classList.remove("fliped");
+  setTimeout(function(){card.classList.remove("fliped");},800);
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   // ... you need to write this ...
-  this.classList.toggle("fliped");
-  firstCard = this;
+  this.classList.add("fliped");
+  if (!hasFlippedCard){
+    hasFlippedCard = true;
+    firstCard = this;
+    return;
+  }
   secondCard = this;
+  hasFlippedCard = false;
+
+  flipCard();
+
 }
