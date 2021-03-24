@@ -14,6 +14,7 @@ createCards(colors);
 
 let firstCard, secondCard;
 let hasFlippedCard = false;
+let locked = false;
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -77,13 +78,18 @@ function flipCard() {
 
 function unFlipCard(card) {
   // ... you need to write this ...
-  setTimeout(function(){card.classList.remove("fliped");},800);
+  locked = true;
+  setTimeout(function(){
+    card.classList.remove("fliped");
+    locked = false;
+  },FOUND_MATCH_WAIT_MSECS);
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   // ... you need to write this ...
+  if (locked) return;
   this.classList.add("fliped");
   if (!hasFlippedCard){
     hasFlippedCard = true;
@@ -94,5 +100,21 @@ function handleCardClick(evt) {
   hasFlippedCard = false;
 
   flipCard();
+  winner();
+}
 
+let but = document.getElementById("reset");
+but.addEventListener("click", refresh)
+
+function refresh(){
+  setTimeout(function(){
+    location.reload()
+  }, 100);
+}
+
+function winner(){
+  let cards = document.querySelectorAll(".fliped")
+  if (cards.length === 10){
+    document.getElementById("winner").style.visibility = "visible";
+  }
 }

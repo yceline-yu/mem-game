@@ -32,7 +32,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  padding-top: 50px;
+  padding-top: 10px;
   padding-left: 90px;
   perspective: 1000px;
 }
@@ -44,4 +44,31 @@ backface-visibility: hidden;
 
 .front {
   transform: rotateY(180deg);
+}
+
+.butt {
+padding-left: 600px;
+}
+
+#reset {
+  background-color: #e3e2e2;
+  border-radius: 4px;
+  width: 100px;
+  height: 30px;
+  transition-duration: 0.4s;
+}
+
+#reset:hover{
+  background-color: rgb(92, 91, 91);
+  color: white;
+}
+
+#winner{
+  visibility: hidden;
+  text-align: center;
+  color: #85bef0;
+}
+
+h2 {
+  margin: 0px;
 }
